@@ -5,6 +5,7 @@
 >
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+  {{ 'component-morgan-accordion.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'component-rte.css' | asset_url | stylesheet_tag }}
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
@@ -27,6 +28,7 @@
   {%- endstyle -%}
 
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-accordion.js' | asset_url }}" defer="defer"></script>
 
   {%- assign first_3d_model = product.media | where: "media_type", "model" | first -%}
   {%- if first_3d_model -%}
@@ -996,6 +998,37 @@
         </media-gallery>
       </div>
     {%- endif -%}
+  </div>
+  <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} grid grid--1-col">
+    <product-accordion>
+      <div class="myaccordion__tabs">
+        <div class="myaccordion__tab">
+          <input type="checkbox" id="chck1">
+          <label class="myaccordion__tab-label" for="chck1">Description</label>
+          <div class="myaccordion__tab-content">
+            {{product.description}}
+          </div>
+        </div>
+        <div class="myaccordion__tab">
+          <input type="checkbox" id="chck2">
+          <label class="myaccordion__tab-label" for="chck2">Type</label>
+          <div class="myaccordion__tab-content">
+            {{product.title}}
+          </div>
+        </div>
+        <div class="myaccordion__tab">
+          <input type="checkbox" id="chck3">
+          <label class="myaccordion__tab-label" for="chck3">Variants</label>
+          <div class="myaccordion__tab-content">
+            <ul>
+            {% for variant in product.variants %}
+              <li>{{ variant.title }}</li>
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </product-accordion>
   </div>
 
   <product-modal id="ProductModal-{{ section.id }}" class="product-media-modal media-modal">

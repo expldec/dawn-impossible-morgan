@@ -607,6 +607,17 @@
       "presets": {
         "name": "Custom Liquid"
       }
+    },"custom-accordion": {
+      "name": "Custom accordion",
+      "settings": {
+        "custom_liquid": {
+          "label": "Custom Liquid",
+          "info": "Add app snippets or other Liquid code to create advanced customizations."
+        }
+      },
+      "presets": {
+        "name": "Custom Liquid"
+      }
     },
     "featured-blog": {
       "name": "Blog posts",

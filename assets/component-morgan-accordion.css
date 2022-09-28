@@ -1,0 +1,66 @@
+product-accordion {
+  margin-top: 2rem;
+  flex-grow: 1;
+}
+
+.myaccordion__tabs {
+  /* border-radius: 8px; */
+  overflow: hidden;
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
+}
+
+.myaccordion__tab {
+  width: 100%;
+  /* color: white; */
+  overflow: hidden;
+}
+.myaccordion__tab-label {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  background: rgba(var(--color-foreground), 0.1);
+  font-weight: bold;
+  cursor: pointer;
+  /* Icon */
+}
+.myaccordion__tab-label:hover {
+  background: rgba(var(--color-foreground), 0.2);
+}
+.myaccordion__tab-label::after {
+  content: "❯";
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  transition: all 0.35s;
+}
+.myaccordion__tab-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1em;
+  transition: all 0.35s;
+}
+.myaccordion__tab-close {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1em;
+  font-size: 0.75em;
+  cursor: pointer;
+}
+.myaccordion__tab-close:hover {
+  background: rgba(var(--color-foreground), 0.2);
+}
+.myaccordion__tab input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.myaccordion__tab input:checked + .myaccordion__tab-label {
+  background: rgba(var(--color-foreground), 0.1);
+}
+.myaccordion__tab input:checked + .myaccordion__tab-label::after {
+  transform: rotate(90deg);
+}
+.myaccordion__tab input:checked ~ .myaccordion__tab-content {
+  max-height: 100vh;
+  padding: 1em;
+}

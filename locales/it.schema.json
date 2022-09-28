@@ -596,6 +596,17 @@
       "presets": {
         "name": "Liquid personalizzato"
       }
+    },"custom-accordion": {
+      "name": "Accordion personalizzato",
+      "settings": {
+        "custom_liquid": {
+          "label": "Accordion personalizzato",
+          "info": "Aggiungi snippet di app o altro codice Liquid per creare personalizzazioni avanzate."
+        }
+      },
+      "presets": {
+        "name": "Liquid personalizzato"
+      }
     },
     "featured-blog": {
       "name": "Articoli del blog",

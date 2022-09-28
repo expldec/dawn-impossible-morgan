@@ -111,6 +111,15 @@
         "padding_bottom": 12
       }
     },
+    "product-accordion": {
+      "type": "custom-accordion",
+      "settings": {
+        "custom_liquid": "Test",
+        "color_scheme": "background-2",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "image-with-text": {
       "type": "image-with-text",
       "blocks": {
@@ -209,6 +218,7 @@
   },
   "order": [
     "main",
+    "product-accordion",
     "image-with-text",
     "multicolumn",
     "product-recommendations"
