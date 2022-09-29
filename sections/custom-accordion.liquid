@@ -11,24 +11,86 @@
   }
 }
 {%- endstyle -%}
-<div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="section-{{ section.id }}-padding">
-    {{ section.settings.custom_liquid }}
+
+{{ 'component-morgan-accordion.css' | asset_url | stylesheet_tag }}
+
+<div class="color-{{ section.settings.color_scheme }} gradient page-width">
+  <div class="section-{{ section.id }}-padding">    
+    <div class="product product--{{ section.settings.media_position }} grid grid--1-col">
+      <product-accordion>
+        <div class="myaccordion__tabs">
+          
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'collapsible_tab' -%}
+                <div class="myaccordion__tab">
+                  <input type="checkbox" id="chck-{{ block.id }}">
+                  <label class="myaccordion__tab-label" for="chck-{{ block.id }}">{{ block.settings.label }}</label>
+                  <div class="myaccordion__tab-content">
+                    {{ block.settings.content }}
+                  </div>
+                </div>
+
+              {%- when 'collapsible_tab_variants' -%}
+                <div class="myaccordion__tab">
+                  <input type="checkbox" id="chck-{{ block.id }}">
+                  <label class="myaccordion__tab-label" for="chck-{{ block.id }}">{{ block.settings.label }}</label>
+                  <div class="myaccordion__tab-content">
+                    <ul>
+                    {% for variant in product.variants %}
+                      <li>{{ variant.title }}</li>
+                    {% endfor %}
+                    </ul>
+                  </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </product-accordion>
+    </div>
+
   </div>
 </div>
 
+
+
 {% schema %}
 {
-  "name": "t:sections.custom-liquid.name",
+  "name": "t:sections.custom-accordion.name",
   "tag": "section",
   "class": "section",
-  "settings": [
+  "blocks": [
     {
-      "type": "liquid",
-      "id": "custom_liquid",
-      "label": "t:sections.custom-liquid.settings.custom_liquid.label",
-      "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+      "type": "collapsible_tab",
+      "name": "t:sections.custom-accordion.blocks.collapsible_tab.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "default": "t:sections.custom-accordion.blocks.collapsible_tab.settings.label.default",
+          "label": "t:sections.custom-accordion.blocks.collapsible_tab.settings.label.label"
+        },
+        {
+          "type": "liquid",
+          "id": "content",
+          "default": "t:sections.custom-accordion.blocks.collapsible_tab.settings.content.default",
+          "label": "t:sections.custom-accordion.blocks.collapsible_tab.settings.content.label"
+        }
+      ]
     },
+    {
+      "type": "collapsible_tab_variants",
+      "name": "t:sections.custom-accordion.blocks.collapsible_tab_variants.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "default": "t:sections.custom-accordion.blocks.collapsible_tab_variants.settings.default",
+          "label": "t:sections.custom-accordion.blocks.collapsible_tab_variants.settings.label"
+        }
+      ]
+    }
+  ],
+  "settings": [
     {
       "type": "select",
       "id": "color_scheme",

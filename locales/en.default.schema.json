@@ -607,8 +607,34 @@
       "presets": {
         "name": "Custom Liquid"
       }
-    },"custom-accordion": {
+    },
+    "custom-accordion": {
       "name": "Custom accordion",
+      "blocks": {
+        "collapsible_tab": {
+          "name": "Collapsible tab",
+          "settings": {
+            "content": {
+              "content": "Content",
+              "default": "Insert Content",
+              "label": "Label"
+            },
+            "label": {
+              "content": "label",
+              "default": "Insert Label",
+              "label": "Label"
+            }
+          }
+        },
+        "collapsible_tab_variants": {
+          "name": "Collapsible tab with variant list",
+          "settings": {
+            "content": "Content",
+            "default": "Insert Label",
+            "label": "Label"
+          }
+        }
+      },
       "settings": {
         "custom_liquid": {
           "label": "Custom Liquid",

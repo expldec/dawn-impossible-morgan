@@ -5,7 +5,6 @@
 >
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
-  {{ 'component-morgan-accordion.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'component-rte.css' | asset_url | stylesheet_tag }}
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
@@ -48,6 +47,16 @@
       onload="this.media='all'"
     >
   {%- endif -%}
+
+  {% for media in product.media %}
+    {% if media.media_type == 'external_video' and product.title == "T-shirt" %}
+      {% if media.host == 'youtube' %}
+        <div class="product__videojumbo">
+          {{ media | external_video_url: autoplay: 1, controls: 0 | external_video_tag }}
+        </div>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
 
   <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
     <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
@@ -999,37 +1008,7 @@
       </div>
     {%- endif -%}
   </div>
-  <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} grid grid--1-col">
-    <product-accordion>
-      <div class="myaccordion__tabs">
-        <div class="myaccordion__tab">
-          <input type="checkbox" id="chck1">
-          <label class="myaccordion__tab-label" for="chck1">Description</label>
-          <div class="myaccordion__tab-content">
-            {{product.description}}
-          </div>
-        </div>
-        <div class="myaccordion__tab">
-          <input type="checkbox" id="chck2">
-          <label class="myaccordion__tab-label" for="chck2">Type</label>
-          <div class="myaccordion__tab-content">
-            {{product.title}}
-          </div>
-        </div>
-        <div class="myaccordion__tab">
-          <input type="checkbox" id="chck3">
-          <label class="myaccordion__tab-label" for="chck3">Variants</label>
-          <div class="myaccordion__tab-content">
-            <ul>
-            {% for variant in product.variants %}
-              <li>{{ variant.title }}</li>
-            {% endfor %}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </product-accordion>
-  </div>
+
 
   <product-modal id="ProductModal-{{ section.id }}" class="product-media-modal media-modal">
     <div

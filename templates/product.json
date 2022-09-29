@@ -113,8 +113,34 @@
     },
     "product-accordion": {
       "type": "custom-accordion",
+      "blocks": {
+        "description": {
+          "type": "collapsible_tab",
+          "settings": {
+            "label": "Description",
+            "content": "{{ product.description }}"
+          }        
+        },
+        "type": {
+          "type": "collapsible_tab",
+          "settings":{
+            "label": "Type",
+            "content": "{{ product.title }}"
+          }
+        },
+        "variants": {
+          "type": "collapsible_tab_variants",
+          "settings":{
+            "label": "Variants"
+          }
+        }
+      },
+      "block_order": [
+        "description",
+        "type",
+        "variants"
+      ],
       "settings": {
-        "custom_liquid": "Test",
         "color_scheme": "background-2",
         "padding_top": 40,
         "padding_bottom": 52
