@@ -616,12 +616,10 @@
           "settings": {
             "content": {
               "content": "Content",
-              "default": "Insert Content",
-              "label": "Label"
+              "label": "Content"
             },
             "label": {
               "content": "label",
-              "default": "Insert Label",
               "label": "Label"
             }
           }
